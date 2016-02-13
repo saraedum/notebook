@@ -2,6 +2,7 @@
 
 [![Google Group](https://img.shields.io/badge/-Google%20Group-lightgrey.svg)](https://groups.google.com/forum/#!forum/jupyter)
 [![Build Status](https://travis-ci.org/jupyter/notebook.svg?branch=master)](https://travis-ci.org/jupyter/notebook)
+[![codecov.io](https://codecov.io/github/jupyter/notebook/coverage.svg?branch=master)](https://codecov.io/github/jupyter/notebook?branch=master)
 [![Documentation Status](https://readthedocs.org/projects/jupyter-notebook/badge/?version=latest)](http://jupyter-notebook.readthedocs.org/en/latest/?badge=latest)
 
 The Jupyter notebook is a web-based notebook environment for interactive
