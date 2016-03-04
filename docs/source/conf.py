@@ -21,27 +21,11 @@ import shlex
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
-# DEBUG for RTD
-print("DEBUG:: sys.path")
-print("================")
-for item in sys.path:
-    print(item)
-
 # add repo root to sys.path
 # here = root/docs/source
 here = os.path.abspath(os.path.dirname(__file__))
 repo_root = os.path.dirname(os.path.dirname(here))
 sys.path.insert(0, repo_root)
-
-print("repo_root")
-print("=====================")
-print(repo_root)
-
-# DEBUG for post insert on RTD
-print("DEBUG:: Post insert to sys.path")
-print("===============================")
-for item in sys.path:
-    print(item)
 
 # Check if docs are being built by ReadTheDocs
 # If so, generate a config.rst file and populate it with documentation about
@@ -70,6 +54,7 @@ extensions = [
     'sphinx.ext.mathjax',
     'IPython.sphinxext.ipython_console_highlighting',
     'sphinxcontrib.spelling',
+    'nbsphinx'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -78,7 +63,7 @@ templates_path = ['_templates']
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 # source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = ['.rst', '.ipynb']
 
 # The encoding of source files.
 #source_encoding = 'utf-8-sig'

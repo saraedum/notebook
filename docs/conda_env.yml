@@ -10,3 +10,4 @@ dependencies:
 - pip:
     - sphinxcontrib_spelling
     - pyenchant
+    - nbsphinx
