@@ -10,3 +10,4 @@ dependencies:
 - pip:
     - sphinxcontrib_spelling
     - pyenchant
+    - recommonmark==0.4.0
