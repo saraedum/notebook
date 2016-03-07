@@ -36,6 +36,7 @@ The Jupyter notebook
    public_server
    security
    frontend_config
+   extensions.md
    extending/index
 
 .. toctree::
@@ -51,7 +52,8 @@ The Jupyter notebook
    :maxdepth: 1
    :caption: Community documentation
 
-   examples/Notebook/rstversions/Examples and Tutorials Index
+   examples/Notebook/Examples and Tutorials Index
+   gallery.md
 
 .. toctree::
    :maxdepth: 2
