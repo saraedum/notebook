@@ -37,6 +37,7 @@ The Jupyter notebook
    security
    frontend_config
    examples/Notebook/rstversions/Distributing Jupyter Extensions as Python Packages.rst
+   nb_extension_new.rst
    extending/index.rst
    
 .. toctree::
