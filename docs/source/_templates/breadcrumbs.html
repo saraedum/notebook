@@ -1,0 +1,21 @@
+{# Override breadcrumbs.html template to remove Edit on GitHub #}
+
+{% extends "!breadcrumbs.html" %}
+{% if page_source_suffix %}
+{% set suffix = page_source_suffix %}
+{% else %}
+{% set suffix = source_suffix %}
+{% endif %}
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+      <ul class="wy-breadcrumbs">
+              <li><a href="{{ pathto(master_doc) }}">Docs</a> &raquo;</li>
+                    {% for doc in parents %}
+                            <li><a href="{{ doc.link|e }}">{{ doc.title }}</a> &raquo;</li>
+                                  {% endfor %}
+                                      <li>{{ title }}</li>
+      </ul>
+      <hr/>
+</div>
+
+{{ super() }}
