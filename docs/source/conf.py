@@ -17,37 +17,24 @@ import sys
 import os
 import shlex
 
+from jupyter_sphinx_theme import *
+init_theme()
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
-# DEBUG for RTD
-print("DEBUG:: sys.path")
-print("================")
-for item in sys.path:
-    print(item)
-
 # add repo root to sys.path
-# here = root/docs/source
 here = os.path.abspath(os.path.dirname(__file__))
 repo_root = os.path.dirname(os.path.dirname(here))
 sys.path.insert(0, repo_root)
-
-print("repo_root")
-print("=====================")
-print(repo_root)
-
-# DEBUG for post insert on RTD
-print("DEBUG:: Post insert to sys.path")
-print("===============================")
-for item in sys.path:
-    print(item)
 
 # Check if docs are being built by ReadTheDocs
 # If so, generate a config.rst file and populate it with documentation about
 # configuration options
 
-if os.environ.get('READTHEDOCS', ''):
+
+if on_rtd:
 
     # Readthedocs doesn't run our Makefile, so we do this to force it to generate
     # the config docs.
@@ -78,7 +65,7 @@ templates_path = ['_templates']
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 # source_suffix = ['.rst', '.md']
-source_suffix = ['.rst', '.ipynb']
+#source_suffix = ['.rst', '.ipynb']
 
 # The encoding of source files.
 #source_encoding = 'utf-8-sig'
@@ -118,7 +105,7 @@ language = None
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build']
+exclude_patterns = ['_build', '.ipynb_checkpoints', 'example.ipynb']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -136,7 +123,7 @@ exclude_patterns = ['_build']
 #show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+#pygments_style = 'sphinx'
 
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
@@ -152,7 +139,7 @@ todo_include_todos = False
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'sphinx_rtd_theme'
+#html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
