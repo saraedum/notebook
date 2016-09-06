@@ -5,7 +5,7 @@ cache:
     directories:
         - $HOME/.cache/bower
 python:
-    - 3.5.1  # Set to 3.5.1 since travis has not yet included as default for 3.5
+    - 3.5
     - 2.7
 
 sudo: false
@@ -19,6 +19,7 @@ env:
     - GROUP=js/notebook
     - GROUP=js/services
     - GROUP=js/tree
+    - GROUP=docs
 
 before_install:
     - pip install --upgrade pip
@@ -37,6 +38,7 @@ script:
     - 'if [[ $GROUP == js* ]]; then travis_retry python -m notebook.jstest ${GROUP:3}; fi'
     - 'if [[ $GROUP == "js/notebook" ]]; then npm run lint; fi'
     - 'if [[ $GROUP == python ]]; then nosetests -v --with-coverage --cover-package=notebook notebook; fi'
+    - 'if [[ $GROUP == docs ]]; then sphinx-build -W -b html -d {envtmpdir}/doctrees docs docs/_build/html; fi'
 
 matrix:
     include:
