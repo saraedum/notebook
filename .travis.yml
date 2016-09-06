@@ -19,6 +19,7 @@ env:
 before_install:
     - pip install --upgrade pip
     - pip install --upgrade setuptools wheel nose coverage codecov
+    - pip install -r docs/doc-requirements.txt
     - nvm install 5.6
     - nvm use 5.6
     - npm upgrade -g npm
