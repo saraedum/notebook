@@ -3,14 +3,16 @@
 
 define([
     'jquery',
+    'underscore',
     'base/js/utils',
     'base/js/i18n',
     'base/js/security',
     'base/js/keyboard',
     'services/config',
     'notebook/js/mathjaxutils',
+    'notebook/js/object-to-preact',
     'components/marked/lib/marked',
-], function($, utils, i18n, security, keyboard, configmod, mathjaxutils, marked) {
+], function($, _, utils, i18n, security, keyboard, configmod, mathjaxutils, otp, marked) {
     "use strict";
 
     /**
@@ -265,9 +267,10 @@ define([
     var MIME_GIF = 'image/gif';
     var MIME_PDF = 'application/pdf';
     var MIME_TEXT = 'text/plain';
-    
+    var MIME_VDOM = "application/vdom.v1+json";
     
     OutputArea.output_types = [
+        MIME_VDOM,
         MIME_JAVASCRIPT,
         MIME_HTML,
         MIME_MARKDOWN,
@@ -660,6 +663,7 @@ define([
     };
 
     OutputArea.safe_outputs = {};
+    OutputArea.safe_outputs[MIME_VDOM] = true;
     OutputArea.safe_outputs[MIME_TEXT] = true;
     OutputArea.safe_outputs[MIME_LATEX] = true;
     OutputArea.safe_outputs[MIME_PNG] = true;
@@ -697,6 +701,20 @@ define([
         }
         return null;
     };
+
+    var append_vdom = function(vdom, md, element) {
+        var type = MIME_VDOM;
+        var toinsert = this.create_output_subarea(
+            md,
+            "output_html rendered_vdom",
+            type
+        );
+
+        element.append(toinsert);
+        preact.render(otp.objectToPreactElement(_.clone(vdom)), toinsert[0]);
+
+        return toinsert;
+     };
 
 
     var append_html = function (html, md, element) {
@@ -1096,6 +1114,7 @@ define([
 
 
     OutputArea.display_order = [
+        MIME_VDOM,
         MIME_JAVASCRIPT,
         MIME_HTML,
         MIME_MARKDOWN,
@@ -1119,6 +1138,7 @@ define([
     OutputArea.append_map[MIME_LATEX] = append_latex;
     OutputArea.append_map[MIME_JAVASCRIPT] = append_javascript;
     OutputArea.append_map[MIME_PDF] = append_pdf;
+    OutputArea.append_map[MIME_VDOM] = append_vdom;
     
     OutputArea.prototype.mime_types = function () {
         return OutputArea.display_order;
@@ -1135,3 +1155,4 @@ define([
 
     return {'OutputArea': OutputArea};
 });
+
